@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sr.Ouriques Barbearia</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css" />
+    <link rel="stylesheet" href="style2.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href="Icone/icone_barbearia6_yy1_icon.ico" type="image/x-icon">
+
+    <!-- JS Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://kit.fontawesome.com/1af33a1ee0.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1 id="TítuloPrincipal" class="burn">Sr.Ouriques Barbearia</h1>
+
+        <!-- M E N U -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="serviços.html">Serviços</a></li>
+                <li class="dropdown">
+                    <a href="#">Mais</a>
+                    <ul class="dropdown-content">
+                        <li><a href="agendamento.html">Agendamentos</a></li>
+                        <li><a href="horarios.html">Horários</a></li>
+                        <li><a href="localizacao.html">Localização</a></li>
+                        <li><a href="Avaliacao.html">Avaliar barbearia</a></li>
+                        <li><a href="visualizarAvaliacoes.html">Avaliações de clientes</a></li>
+                        <a href="#contato" class="link-contato">Contato</a>
+                    </ul>
+                </li>
+                <li><a href="sobreNos.html">Sobre Nós</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Modal de Agendamento -->
+    <br>
+    <br>
+    <div id="agendamentoModal" class="modal">
+        <div class="modal-content">
+            <!-- Adiciona o ícone de agendamento acima do parágrafo -->
+            <div style="text-align: center; margin-bottom: 20px;">
+                <span style="font-size: 2.5em; color: #b6854d;">&#x1F4C5;</span>
+            </div>
+            <h2 style="color: #b6854d; text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3); letter-spacing: 1px; font-weight: bold; text-align: center; margin-bottom: 20px; font-size: 1.3em;">Agende a sua visita conosco agora mesmo!</h2>
+            <br>
+            <div style="background-color: rgba(50, 50, 50, 0.9); padding: 20px; border-radius: 10px; box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); border: 2px solid #b6854d; text-align: center;">
+
+                <p style="color: #ffffff; font-size: 1.1em; margin-bottom: 20px;">Para agendar seu atendimento, basta seguir estes simples passos:</p>
+
+                <ol style="color: white; list-style: none; padding: 0; text-align: left; margin-bottom: 20px;">
+                    <li>&#8226; Escolha o serviço desejado.</li>
+                    <li>&#8226; Selecione o dia da semana.</li>
+                    <li>&#8226; Opte por um horário disponível.</li>
+                </ol>
+
+                <p style="text-align: justify; line-height: 1.6; color: white; margin-bottom: 20px;">
+                    Lembre-se de que os horários disponíveis correspondem à semana atual, garantindo agendamentos imediatos. Agradecemos pela compreensão e estamos à disposição para oferecer o melhor atendimento. Ao clicar em 'Agendar', você será direcionado ao WhatsApp para concluir o processo. Estamos ansiosos para recebê-lo em breve!
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <br>
+    <br>
+
+    <script>
+        function validarCampos() {
+         const nome = document.getElementById("nome").value;
+         const telefone = document.getElementById("telefone").value;
+         const diaSemana = document.getElementById("diaSemana").value;
+         const servico = document.getElementById("servico").value;
+         const horario = document.getElementById("horario").value;
+     
+         // Verifica se todos os campos estão preenchidos
+         if (nome && telefone && diaSemana && servico && horario) {
+             // Se todos os campos estão preenchidos, agende o serviço
+             agendarServico();
+             // Limpe a mensagem de erro, se houver alguma
+             document.getElementById("mensagemErro").innerText = "";
+         } else {
+             // Se algum campo não estiver preenchido, exiba uma mensagem de erro genérica
+             document.getElementById("mensagemErro").innerText = "Por favor, preencha todos os campos, incluindo o horário.";
+         }
+     }
+     
+             function habilitarDesabilitarBotaoAgendar() {
+                 const nome = document.getElementById("nome").value;
+                 const telefone = document.getElementById("telefone").value;
+                 const diaSemana = document.getElementById("diaSemana").value;
+                 const servico = document.getElementById("servico").value;
+     
+                 // Obtém o botão "Agendar"
+                 const botaoAgendar = document.getElementById("botaoAgendar");
+     
+                 // Habilita o botão apenas se todos os campos estiverem preenchidos
+                 botaoAgendar.disabled = !(nome && telefone && diaSemana && servico);
+             }
+         </script>
+     
+     <form id="agendamentoForm">
+        <label for="nome">Seu nome <span class="campo-obrigatorio">*</span></label>
+        <input type="text" id="nome" placeholder="Digite seu nome" required oninput="habilitarDesabilitarBotaoAgendar()">
+    
+        <label for="telefone">Seu telefone <span class="campo-obrigatorio">*</span></label>
+        <input type="tel" id="telefone" placeholder="Digite seu telefone" required oninput="habilitarDesabilitarBotaoAgendar()">
+    
+        <label for="diaSemana">Selecione o dia da semana <span class="campo-obrigatorio">*</span></label>
+        <select id="diaSemana" required onchange="habilitarDesabilitarBotaoAgendar()">
+            <option value="" disabled selected hidden>Escolha o dia da semana</option>
+            <option value="terca">Terça-feira</option>
+            <option value="quarta">Quarta-feira</option>
+            <option value="quinta">Quinta-feira</option>
+            <option value="sexta">Sexta-feira</option>
+            <option value="sabado">Sábado</option>
+        </select>
+    
+        <label for="horario">Selecione o horário <span class="campo-obrigatorio">*</span></label>
+        <select id="horario" required onchange="habilitarDesabilitarBotaoAgendar()">
+            <option value="" disabled selected hidden>Selecione o horário</option>
+            <!-- Opções de horário devem ser adicionadas aqui -->
+        </select>
+    
+        <label for="servico">Selecione o tipo de serviço <span class="campo-obrigatorio">*</span></label>
+        <select id="servico" required onchange="habilitarDesabilitarBotaoAgendar()">
+            <option value="" disabled selected hidden>Selecione o tipo de serviço</option>
+            <option value="corte">Corte de Cabelo - R$ 30,00</option>
+            <option value="barba">Barba - R$ 30,00</option>
+            <option value="sobrancelha">Design de Sobrancelha - R$ 10,00</option>
+            <option value="corteBarba">Corte de Cabelo e Barba - R$ 50,00</option>
+            <option value="acabamento">Acabamento - R$ 10,00</option>
+        </select>
+    
+        <div id="mensagemErro" style="color: red; margin-bottom: 10px;"></div>
+        <button type="button" id="botaoAgendar" onclick="validarCampos()" disabled>Agendar</button>
+        <button type="button" onclick="limparFormulario()">Limpar</button>
+    </form>
+         
+             <style>
+                 #agendamentoForm {
+                     max-width: 400px;
+                     margin: 0 auto;
+                     text-align: center;
+                 }
+     
+                 #agendamentoForm label {
+                     display: block;
+                     text-align: left;
+                     margin-bottom: 5px;
+                     color: #ffffff;
+                 }
+     
+                 #agendamentoForm input,
+                 #agendamentoForm select {
+                     width: 100%;
+                     padding: 12px;
+                     margin: 8px 0;
+                     box-sizing: border-box;
+                     border: 2px solid #b6854d;
+                     border-radius: 8px;
+                 }
+     
+                 #agendamentoForm select {
+                     background-color: #fff;
+                     color: #333;
+                     appearance: none;
+                     cursor: pointer;
+                 }
+     
+                 #agendamentoForm select option {
+                     background-color: #b6854d;
+                     color: #fff;
+                 }
+     
+                 #agendamentoForm button {
+                     background-color: #4CAF50;
+                     color: white;
+                     padding: 15px;
+                     border: none;
+                     border-radius: 8px;
+                     cursor: pointer;
+                     font-size: 1.1em;
+                     width: 100%;
+                     margin-top: 10px;
+                 }
+     
+                 #agendamentoForm button:hover {
+                     background-color: #45a049;
+                 }
+     
+                 .campo-obrigatorio {
+                     color: red;
+                     font-size: 0.8em;
+                     margin-left: 5px;
+                 }
+             </style>
+     
+         </form>
+     
+         <script>
+             function limparFormulario() {
+                 // Limpa os valores dos campos do formulário
+                 document.getElementById("nome").value = "";
+                 document.getElementById("telefone").value = "";
+                 document.getElementById("diaSemana").value = "";
+                 document.getElementById("horario").value = ""; // Isso remove a seleção existente
+                 document.getElementById("servico").value = "";
+     
+                 // Limpa a mensagem de erro, se houver alguma
+                 document.getElementById("mensagemErro").innerText = "";
+     
+                 // Desabilita o botão "Agendar" após limpar
+                 document.getElementById("botaoAgendar").disabled = true;
+     
+                 // Restaura as dicas de placeholder nos campos
+                 document.getElementById("nome").placeholder = "Seu nome";
+                 document.getElementById("telefone").placeholder = "Seu telefone";
+                 document.getElementById("diaSemana").placeholder = "Selecione o dia da semana";
+     
+                 // Restaura a opção padrão para o campo de horário
+                 document.getElementById("horario").innerHTML = '<option value="" disabled selected hidden>Selecione o horário</option>';
+     
+                 document.getElementById("servico").placeholder = "Selecione o tipo de serviço";
+             }
+         </script>
+
+
+    <script>
+
+        
+        // Abre o modal de agendamento
+        function openModal() {
+            document.getElementById("agendamentoModal").style.display = "block";
+        }
+
+        // Fecha o modal de agendamento
+        function closeModal() {
+            document.getElementById("agendamentoModal").style.display = "none";
+        }
+
+
+
+        function agendarServico() {
+    try {
+        const nome = document.getElementById("nome").value;
+        const telefone = document.getElementById("telefone").value;
+        const servicoSelect = document.getElementById("servico");
+        const servico = servicoSelect.options[servicoSelect.selectedIndex].text.split(' - ')[0].toLowerCase();
+        const horario = document.getElementById("horario").value;
+        const diaSelecionado = document.getElementById("diaSemana").value;
+
+        const diasDaSemana = {
+            terca: "Terça-feira",
+            quarta: "Quarta-feira",
+            quinta: "Quinta-feira",
+            sexta: "Sexta-feira",
+            sabado: "Sábado"
+        };
+
+        const nomeCompletoDia = diasDaSemana[diaSelecionado];
+
+        function formatarTelefone(telefone) {
+            const numeroLimpo = telefone.replace(/\D/g, '');
+            const codigoPais = numeroLimpo.slice(0, 2);
+            const codigoArea = numeroLimpo.slice(2, 4);
+            const parte1 = numeroLimpo.slice(4, 9);
+            const parte2 = numeroLimpo.slice(9);
+
+            const telefoneFormatado = `+${codigoPais} (${codigoArea}) ${parte1}-${parte2}`;
+            return telefoneFormatado;
+        }
+
+        const telefoneFormatado = formatarTelefone(telefone);
+        const mensagemWhatsApp = `
+Novo agendamento solicitado por ${nome}.
+
+    Serviço: ${servico}
+    Dia: ${nomeCompletoDia}
+    Horário: ${horario}
+
+    Este horário está disponível para agendamento nesta semana?
+`;
+
+        const numeroTelefone = "+55 48 998654636";
+        const encodedMessage = encodeURIComponent(mensagemWhatsApp);
+
+        setTimeout(() => {
+            window.open(`https://api.whatsapp.com/send?phone=${numeroTelefone}&text=${encodedMessage}`, '_blank');
+        }, 500);
+
+    } catch (error) {
+        console.error("Erro ao agendar serviço:", error.message);
+        alert("Desculpe, ocorreu um erro ao agendar o serviço. Por favor, tente novamente mais tarde.");
+    }
+}
+
+        // Função para gerar horários a cada 30 minutos dentro do horário de funcionamento
+        function gerarHorarios(horaInicial, horaFinal) {
+            const horarios = [];
+            let horaAtual = new Date(horaInicial);
+
+            while (horaAtual < horaFinal) {
+                const horarioFormatado = horaAtual.toLocaleTimeString('pt-BR', { hour: '2-digit', minute: '2-digit' });
+                horarios.push(horarioFormatado);
+                horaAtual.setMinutes(horaAtual.getMinutes() + 30);
+            }
+
+            return horarios;
+        }
+
+        // Array de horários disponíveis por dia da semana
+        const horariosDisponiveis = {
+            terca: gerarHorarios(new Date(2024, 2, 5, 9, 0), new Date(2024, 2, 5, 20, 0)),
+            quarta: gerarHorarios(new Date(2024, 2, 6, 9, 0), new Date(2024, 2, 6, 20, 0)),
+            quinta: gerarHorarios(new Date(2024, 2, 7, 9, 0), new Date(2024, 2, 7, 20, 0)),
+            sexta: gerarHorarios(new Date(2024, 2, 8, 9, 0), new Date(2024, 2, 8, 20, 0)),
+            sabado: gerarHorarios(new Date(2024, 2, 9, 9, 0), new Date(2024, 2, 9, 17, 0)),
+        };
+
+        // Função para preencher o menu suspenso de horários
+        function preencherHorarios(diaSelecionado) {
+            const horariosSelect = document.getElementById("horario");
+
+            // Limpar os horários anteriores
+            horariosSelect.innerHTML = "";
+
+            // Adicionar os novos horários disponíveis
+            horariosDisponiveis[diaSelecionado].forEach((horario) => {
+                const option = document.createElement("option");
+                option.value = horario;
+                option.text = horario;
+                horariosSelect.appendChild(option);
+            });
+        }
+
+        // Adicionar um ouvinte de evento de mudança ao menu suspenso de dia da semana
+        document.getElementById("diaSemana").addEventListener("change", function () {
+            const diaSelecionado = this.value;
+            preencherHorarios(diaSelecionado);
+        });
+    </script>
+
+    <br>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <!-- C O N T A T O -->
+    <section id="contato">
+        <div class="contact-section">
+            <h2>Entre em Contato</h2>
+            <p>Celular: (48) 92000-3225</p>
+            <p>Ou clique nos links abaixo:</p>
+            <p>
+                <strong>WhatsApp:</strong>
+                <a href="https://wa.me/5548920003225" target="_blank" class="link-whatsapp">
+                    <i class="fab fa-whatsapp"></i> (48) 92000-3225
+                </a>
+            </p>
+            <p>
+                <strong>Instagram:</strong>
+                <a href="https://www.instagram.com/sr.ouriquesbarbearia/" target="_blank" class="link-instagram">
+                    <i class="fab fa-instagram"></i> instagram.com/sr.ouriquesbarbearia/
+                </a>
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Função para animar a rolagem suave até a seção de contato
+        function scrollToContact() {
+            const contactSection = document.getElementById("contato");
+
+            if (contactSection) {
+                window.scrollTo({
+                    top: contactSection.offsetTop,
+                    behavior: "smooth"
+                });
+            }
+        }
+
+        // Adicione um ouvinte de evento de clique ao link "Contato"
+        const contactLink = document.querySelector(".link-contato");
+
+        if (contactLink) {
+            contactLink.addEventListener("click", (event) => {
+                event.preventDefault(); // Evita o comportamento padrão do link
+                scrollToContact(); // Chama a função para rolar suavemente até a seção de contato
+            });
+        }
+    </script>
+
+    <!-- Rodapé -->
+    <footer>
+        <p id="copyright">&copy; 2024 Sr.Ouriques Barbearia. Todos os direitos reservados.</p>
+    </footer>
+</body>
+
+</html>

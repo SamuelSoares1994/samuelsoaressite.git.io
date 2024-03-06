@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Sr.Ouriques Barbearia</title>
+
+<!-- Stylesheets -->
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css"/>
+<link rel="stylesheet" href="style2.css">
+
+<!-- Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+<link rel="icon" href="Icone/icone_barbearia6_yy1_icon.ico" type="image/x-icon">
+
+<!-- JS Libraries -->
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+<script src="https://kit.fontawesome.com/1af33a1ee0.js" crossorigin="anonymous"></script>
+</head>
+    
+<body>
+    <!-- Cabeçalho -->
+    <header>
+    <h1 id="TítuloPrincipal" class="burn">Sr.Ouriques Barbearia</h1>
+   
+        <!-- M E N U -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="serviços.html">Serviços</a></li>
+                <li class="dropdown">
+                    <a href="#">Mais</a>
+                    <ul class="dropdown-content">
+                        <li><a href="agendamento.html">Agendamentos</a></li>
+                        <li><a href="horarios.html">Horários</a></li>
+                        <li><a href="localizacao.html">Localização</a></li>
+                        <li><a href="Avaliacao.html">Avaliar barbearia</a></li>
+                        <li><a href="visualizarAvaliacoes.html">Avaliações de clientes</a></li>
+                        <a href="#contato" class="link-contato">Contato</a>
+                    </ul>
+                </li>
+                <li><a href="sobreNos.html">Sobre Nós</a></li>
+            </ul>
+        </nav>
+
+</header>
+
+<br>
+<br>
+<br>
+
+<!-- H O R Á R I O S -->   <!-- H O R Á R I O S -->   <!-- H O R Á R I O S -->   <!-- H O R Á R I O S -->   <!-- H O R Á R I O S -->   <!-- H O R Á R I O S -->   <!-- H O R Á R I O S -->   
+<main>
+    <section id="horarios">
+        <h2>Horários de Atendimento</h2>
+        <p>Confira nossos horários disponíveis para agendamento</p>
+        <br>
+        <br>
+        <div class="servico">
+            <strong>Terça a Sexta-feira:</strong> <span>09:00 ás 12:00 / 14:00 ás 20:00</span>
+        </div>
+        <br>
+        <div class="servico">
+            <strong>Sábado:</strong> <span>9:00 ás 12:00 / 14:00 ás 17:00</span>
+        </div>
+        <br>
+        <div class="servico">
+            <strong>Domingo:</strong> <span>Fechado</span>
+        </div>  
+    </section>
+</main>
+
+<br>
+<br>
+<br>
+
+<!-- C O N T A T O-->   <!-- C O N T A T O-->   <!-- C O N T A T O-->  <!-- C O N T A T O-->  <!-- C O N T A T O-->   <!-- C O N T A T O-->   <!-- C O N T A T O-->    <!-- C O N T A T O-->     
+<section id="contato">
+    <div class="contact-section">
+        <h2>Entre em Contato</h2>
+        <p>Celular: (48) 92000-3225</p>
+        <p>Ou clique nos links abaixo:</p>
+        <p>
+            <strong>WhatsApp:</strong>
+            <a href="https://wa.me/5548920003225" target="_blank" class="link-whatsapp">
+                <i class="fab fa-whatsapp"></i> (48) 92000-3225 
+            </a>
+        </p>
+        <p>
+            <strong>Instagram:</strong>
+            <a href="https://www.instagram.com/sr.ouriquesbarbearia/" target="_blank" class="link-instagram">
+                <i class="fab fa-instagram"></i> instagram.com/sr.ouriquesbarbearia/ 
+            </a>
+        </p>
+    </div>
+</section>
+
+<script>
+    // Função para animar a rolagem suave até a seção de contato
+    function scrollToContact() {
+        const contactSection = document.getElementById("contato");
+
+        if (contactSection) {
+            window.scrollTo({
+                top: contactSection.offsetTop,
+                behavior: "smooth"
+            });
+        }
+    }
+
+    // Adicione um ouvinte de evento de clique ao link "Contato"
+    const contactLink = document.querySelector(".link-contato");
+
+    if (contactLink) {
+        contactLink.addEventListener("click", (event) => {
+            event.preventDefault(); // Evita o comportamento padrão do link
+            scrollToContact(); // Chama a função de rolagem suave
+        });
+    }
+</script>
+
+<!-- C O P Y R I G H T -->  <!-- C O P Y R I G H T -->  <!-- C O P Y R I G H T -->  <!-- C O P Y R I G H T -->  <!-- C O P Y R I G H T -->   <!-- C O P Y R I G H T -->   <!-- C O P Y R I G H T -->     
+<footer>
+    <p id="copyright">&copy; 2024 Sr.Ouriques Barbearia. Todos os direitos reservados.</p>
+</footer>
+
+</body>
+</html>

@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sr.Ouriques Barbearia</title>
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="style2.css">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css">
+    <link rel="icon" href="Icone/icone_barbearia6_yy1_icon.ico" type="image/x-icon">
+
+    <!-- JS Libraries -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://kit.fontawesome.com/1af33a1ee0.js" crossorigin="anonymous"></script>
+
+    <!-- Swiper JS -->
+    <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
+     
+    <!-- Estilos do Slider -->
+    <style>
+        .slider {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 10px;
+            margin: auto;
+            overflow: hidden;
+            position: relative;
+        }
+
+        .slider img {
+            width: 100%;
+            height: auto;
+            display: block;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(255, 255, 255, 0.1);
+            transition: transform 0.3s ease-in-out;
+            position: relative;
+            opacity: 1; /* Tornar as imagens inicialmente visíveis */
+        }
+
+        .slider img::before {
+            content: attr(data-message);
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            z-index: 1;
+            color: #fff;
+            font-size: 1.5em;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            opacity: 0;
+            transition: opacity 0.3s ease-in-out;
+        }
+
+        .slider img:hover::before {
+            opacity: 1;
+        }
+
+        @media (max-width: 768px) {
+            .slider {
+                grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+            }
+
+            .slider img::before {
+                font-size: 1.2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cabeçalho -->
+    <header>
+        <h1 id="TítuloPrincipal" class="burn">Sr.Ouriques Barbearia</h1>
+
+        <!-- M E N U -->
+        <nav>
+            <ul>
+                <li><a href="serviços.html">Serviços</a></li>
+                <li class="dropdown">
+                    <a href="#">Mais</a>
+                    <ul class="dropdown-content">
+                        <li><a href="agendamento.html">Agendamentos</a></li>
+                        <li><a href="horarios.html">Horários</a></li>
+                        <li><a href="localizacao.html">Localização</a></li>
+                        <li><a href="Avaliacao.html">Avaliar barbearia</a></li>
+                        <li><a href="visualizarAvaliacoes.html">Avaliações de clientes</a></li>
+                        <a href="#contato" class="link-contato">Contato</a>
+                    </ul>
+                </li>
+                <li><a href="sobreNos.html">Sobre Nós</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <!-- Seção Home -->
+    <section id="home">
+        <div class="intro-text">
+            <!-- Subtítulo e Descrição -->
+            <h2 id="Subtitulo">Bem-vindo à Sr.Ouriques Barbearia</h2>
+            <p id="Descrição">Sua experiência de barbearia na cidade.</p>
+        </div>
+
+        <!-- Slider -->
+        <div class="slider">
+            <img src="Imagens/Barber1.jpeg">
+            <img src="Imagens/Barber2.jpeg">
+            <img src="Imagens/Barber5.jpeg">
+            <img src="Imagens/Barber9.jpeg">
+            <img src="Imagens/Barber11.jpeg">
+            <img src="Imagens/Barber12.jpeg">
+            <img src="Imagens/Barber14.jpeg">
+            <img src="Imagens/Barber15.jpeg">
+            <img src="Imagens/Barber8.jpeg">
+        </div>
+
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+         
+        <!-- Contato -->
+        <section id="contato">
+            <div class="contact-section">
+                <h2>Entre em Contato</h2>
+                <p>Celular: (48) 92000-3225</p>
+                <p>Ou clique nos links abaixo:</p>
+                <p>
+                    <strong>WhatsApp:</strong>
+                    <a href="https://wa.me/5548920003225" target="_blank" class="link-whatsapp">
+                        <i class="fab fa-whatsapp"></i> (48) 92000-3225 
+                    </a>
+                </p>
+                <p>
+                    <strong>Instagram:</strong>
+                    <a href="https://www.instagram.com/sr.ouriquesbarbearia/" target="_blank" class="link-instagram">
+                        <i class="fab fa-instagram"></i> instagram.com/sr.ouriquesbarbearia/ 
+                    </a>
+                </p>
+            </div>
+        </section>
+    </section>
+
+    <script>
+        // Função para animar a rolagem suave até a seção de contato
+        function scrollToContact() {
+            const contactSection = document.getElementById("contato");
+
+            if (contactSection) {
+                window.scrollTo({
+                    top: contactSection.offsetTop,
+                    behavior: "smooth"
+                });
+            }
+        }
+
+        // Adicione um ouvinte de evento de clique ao link "Contato"
+        const contactLink = document.querySelector(".link-contato");
+
+        if (contactLink) {
+            contactLink.addEventListener("click", (event) => {
+                event.preventDefault(); // Evita o comportamento padrão do link
+                scrollToContact(); // Chama a função de rolagem suave
+            });
+        }
+
+    
+    </script>
+
+    <!-- Rodapé -->
+    <footer>
+        <p id="copyright">&copy; 2024 Sr.Ouriques Barbearia. Todos os direitos reservados.</p>
+    </footer>
+</body>
+</html>

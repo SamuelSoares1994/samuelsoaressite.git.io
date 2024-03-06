@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Localização - Sr.Ouriques Barbearia</title>
+    <link rel="stylesheet" href="style2.css">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css"/>
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet/dist/leaflet.css" />
+    <link rel="stylesheet" href="https://kit.fontawesome.com/1af33a1ee0.js" crossorigin="anonymous">
+    <link rel="icon" href="Icone/icone_barbearia6_yy1_icon.ico" type="image/x-icon">
+
+    <style>
+        #map {
+            width: 100%;
+            height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Seção de Cabeçalho -->
+    <header>
+        <h1 id="TítuloPrincipal" class="burn">Sr.Ouriques Barbearia</h1>
+
+        <!-- M E N U -->
+        <nav>
+            <ul>
+                <li><a href="index.html">Início</a></li>
+                <li><a href="serviços.html">Serviços</a></li>
+                <li class="dropdown">
+                    <a href="#">Mais</a>
+                    <ul class="dropdown-content">
+                        <li><a href="agendamento.html">Agendamentos</a></li>
+                        <li><a href="horarios.html">Horários</a></li>
+                        <li><a href="localizacao.html">Localização</a></li>
+                        <li><a href="Avaliacao.html">Avaliar barbearia</a></li>
+                        <li><a href="visualizarAvaliacoes.html">Avaliações de clientes</a></li>
+                        <a href="#contato" class="link-contato">Contato</a>
+                    </ul>
+                </li>
+                <li><a href="sobreNos.html">Sobre Nós</a></li>
+            </ul>
+        </nav>
+    </header>
+    <br>
+    <br>
+    <br>
+<!-- Seção de Localização -->
+<section id="localizacao">
+    <div class="localizacao-content">
+        <h2>Nossa Localização</h2>
+        <p>Estamos localizados em:</p>
+        <address>
+            Rua João Adolfo Corrêa, 1711<br>
+            Passo do Gado, Tubarão - SC<br>
+            CEP: 88706-201
+        </address>
+        <br>
+        <div id="map" style="height: 500px;"></div>
+        <br>
+        <div class="info-buttons">
+            <div class="info-button">
+                <strong>Como Chegar:</strong>
+                <button id="BTgetDiretions" class="botao-info" onclick="getDirections()">Clique aqui para obter informações</button>
+            </div>
+            <div class="info-button">
+                <strong>Centralizar o Mapa:</strong>
+                <button id="BTcentralizar" class="botao-info" onclick="centerMap()">Centralizar Mapa</button>
+            </div>
+        </div>
+    </div>
+</section>
+
+    <br>
+    <br>
+    <br>
+    <!-- Seção de Contato -->
+    <section id="contato">
+        <div class="contact-section">
+            <h2>Entre em Contato</h2>
+            <p>Celular: (48) 92000-3225</p>
+            <p>Ou clique nos links abaixo:</p>
+            <p>
+                <strong>WhatsApp:</strong>
+                <a href="https://wa.me/5548920003225" target="_blank" class="link-whatsapp">
+                    <i class="fab fa-whatsapp"></i> (48) 92000-3225
+                </a>
+            </p>
+            <p>
+                <strong>Instagram:</strong>
+                <a href="https://www.instagram.com/sr.ouriquesbarbearia/" target="_blank" class="link-instagram">
+                    <i class="fab fa-instagram"></i> instagram.com/sr.ouriquesbarbearia/
+                </a>
+            </p>
+        </div>
+    </section>
+
+    <script>
+        // Função para animar a rolagem suave até a seção de contato
+        function scrollToContact() {
+            const contactSection = document.getElementById("contato");
+
+            if (contactSection) {
+                window.scrollTo({
+                    top: contactSection.offsetTop,
+                    behavior: "smooth"
+                });
+            }
+        }
+
+        // Adicione um ouvinte de evento de clique ao link "Contato"
+        const contactLink = document.querySelector(".link-contato");
+
+        if (contactLink) {
+            contactLink.addEventListener("click", (event) => {
+                event.preventDefault(); // Evita o comportamento padrão do link
+                scrollToContact(); // Chama a função de rolagem suave
+            });
+        }
+    </script>
+
+    <!-- Rodapé -->
+    <footer>
+        <p id="copyright">&copy; 2024 Sr.Ouriques Barbearia. Todos os direitos reservados.</p>
+    </footer>
+
+    <!-- Scripts no Final da Página -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js"></script>
+    <script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
+    <script>
+        var map; // Declare a variável do mapa globalmente
+
+        function showMap() {
+            map = L.map('map').setView([-28.492546, -48.9924], 13);
+            L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+            }).addTo(map);
+
+            var marker = L.marker([-28.492546, -48.9924]).addTo(map);
+            marker.bindPopup("<b>Sr. Ouriques Barbearia</b><br>Rua João Adolfo Corrêa, 1711", { className: 'red-marker' }).openPopup();
+        }
+
+       function getDirections() {
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function(position) {
+                    var currentCoords = position.coords.latitude + ',' + position.coords.longitude;
+                    window.open(`https://www.google.com/maps/dir/?api=1&origin=${encodeURIComponent(currentCoords)}&destination=-28.492546,-48.9924&travelmode=driving`);
+                }, function(error) {
+                    console.error('Erro ao obter a localização: ', error.message);
+                });
+            } else {
+                alert('Geolocalização não é suportada pelo seu navegador.');
+            }
+        }
+
+        function centerMap() {
+            map.setView([-28.492546, -48.9924], 13); // Ajusta o mapa para a posição inicial
+        }
+
+        document.addEventListener("DOMContentLoaded", function() {
+            showMap();
+        });
+    </script>
+</body>
+
+</html>
